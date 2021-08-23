@@ -1,0 +1,16 @@
+body{ margin: 0; padding: 0; box-sizing: border-box; font-size: 14px; }
+.zone{ width: 49%; margin: 10px; background-color: orange; }
+body{ display: flex; }
+.zone table, .zone select, .zone .vueFour{ float: right; }
+table, .vueFour{ width: 95%; border: 5px solid #000000; }
+select{ width: 95%; border: 5px solid #000000; line-height: 20px; background-color: green; }
+.vueFour{ min-height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 5px; }
+.infosPied{ width: 100%; display: flex; justify-content: space-between; margin-bottom: 5px; }
+.dels{ display: flex; }
+button.demarrerFour{ background-color: blue; border-radius: 25px; padding: 15px 25px; font-weight: 900; font-size: 18px; }
+.delJaune, .delVerte{ margin-right: 5px; }
+.delJaune{ margin-left: 5px; }
+.delRouge, .delJaune, .delVerte{ width: 15px; height: 15px; background-color: #000000; border: 2px solid #000000; border-radius: 50%; }
+.delRouge.active{ background-color: red!important; }
+.delJaune.active{ background-color: yellow!important; }
+.delVerte.active{ background-color: green!important; }
