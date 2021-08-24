@@ -48,6 +48,7 @@ app.get('/obtenirBois/:idBois', async (req, res) => {
 });
 
 app.post("/connexion", async (req, res) => {
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
     const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
     connexion.query(query, [req.params.nomCompte], (error, results) => {
         if(!results[0]){

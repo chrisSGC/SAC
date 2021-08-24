@@ -14,9 +14,11 @@
 	</head>
   	<body class="text-center">
 		<main class="form-signin">
-			<form action="application.html" method="post">
-				<img class="mb-4" src="images/logo.jpg" alt="" width="72" height="57">
+			<form id="signin" action="application.html" method="post">
+				<img class="mb-4" src="images/logoSAC.PNG" alt="" width="72" height="57">
 				<h1 class="h3 mb-3 fw-normal">Connexion</h1>
+				<div id="mauvaisId" class="form-floating">
+				</div>
 				<div class="form-floating">
 					<input type="text" class="form-control" id="floatingInput" placeholder="Votre identifiant">
 					<label for="floatingInput">Identifiant</label>
@@ -29,5 +31,6 @@
 				<p class="mt-5 mb-3 text-muted">420-106-RL Objets Connectés<br>&copy; Christophe Ferru 2021<br>Cegep de Rivière-du-Loup Aut.2021</p>
 			</form>
 		</main>
+		<script src="script/connexion.js"/></script>
   	</body>
 </html>
