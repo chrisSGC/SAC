@@ -12,6 +12,14 @@ const connexion = mysql.createPool({
     //socketPath: `/cloudsql/${process.env.INSTANCE}`
 });
 
+const verifToken = (token) => {
+    const query = "SELECT id FROM compte WHERE token=?";
+
+    connexion.query(query,[token], (error, results) => {
+        return (!results[0]) ? false : true;
+    });
+}
+
 /**
  * Permet de recuperer la liste des bois
  */
