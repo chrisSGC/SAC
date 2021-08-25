@@ -187,7 +187,21 @@ label {
 button, select {
     text-transform: none;
 }
-
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.alert-danger .alert-link {
+  color: #6a1a21;
+}
 .form-signin{ width: 100%; max-width: 550px; padding: 15px; margin: auto; }
 .form-signin .checkbox{ font-weight: 400; }
 .form-signin .form-floating:focus-within{ z-index: 2; }

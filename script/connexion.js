@@ -8,21 +8,26 @@ document.getElementById("signin").addEventListener("submit", (evt) => {
 });
 
 const verifConnexion = async () => {
-    var form = new FormData();
-    form.append("nomCompte", document.getElementById("floatingInput").value);
-    form.append("motDePasse", document.getElementById("floatingPassword").value);
+    let data = {nomCompte: document.getElementById("floatingInput").value, motDePasse: document.getElementById("floatingPassword").value};
 
     const response = await fetch(URL_API+'connexion', {
-        method: 'POST',
-        body: form, // string or object
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: "POST", 
+        body: JSON.stringify(data),
+        headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
     });
-    const myJson = await response.json(); //extract JSON from the http response
-    // do something with myJson
 
-    localStorage.setItem('token', myJson.token);
+    const myJson = await response.json();
 
-    document.getElementById("mauvaisId").innerHTML = "DATA SETTED";
+    if(typeof myJson.token !== 'undefined'){
+        // On stocke l'id de l'utilisateur
+        localStorage.setItem('token', myJson.token);
+
+        // Redirection vers l'application
+    }else{
+        // Afficher une alerte d'erreur
+        document.getElementById("mauvaisId").innerHTML = '<div class="alert alert-danger" role="alert">Identifiants incorrects. Merci de ré-essayer!</div>';
+        
+        // vider les champs
+        document.getElementById("floatingInput").value = document.getElementById("floatingPassword").value = "";
+    }
 }
