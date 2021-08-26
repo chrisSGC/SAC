@@ -23,6 +23,7 @@ const verifConnexion = async () => {
         localStorage.setItem('token', myJson.token);
 
         // Redirection vers l'application
+        window.location.replace("application.html");
     }else{
         // Afficher une alerte d'erreur
         document.getElementById("mauvaisId").innerHTML = '<div class="alert alert-danger" role="alert">Identifiants incorrects. Merci de ré-essayer!</div>';

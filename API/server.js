@@ -70,6 +70,18 @@ app.get('/obtenirBois/:idBois', async (req, res) => {
     });
 });
 
+app.get('verifierExistance/:tokenCompte', async (req, res) => {
+    const query = "SELECT id FROM compte WHERE token=?";
+
+    connexion.query(query, [req.params.tokenCompte], (error, results) => {
+        if(!results[0]){
+            res.json({retour: "false"});
+        }else{
+            res.json({retour: "true"});
+        }
+    });
+});
+
 app.post("/connexion", async (req, res) => {
     console.log("Données d'entrée:");
     console.log(req.body.nomCompte);
