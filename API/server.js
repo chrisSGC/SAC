@@ -9,6 +9,7 @@ var cors = require('cors');
 const app = express();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
+const saltL = 10;
 
 const allowedOrigins = ['http://127.0.0.1:5500'];
 app.use(cors({  
@@ -48,10 +49,10 @@ function creerToken(long) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
- charactersLength));
-   }
+
+    for ( var i = 0; i < long; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
    return result;
 }
 
@@ -95,7 +96,7 @@ app.get('verifierExistance/:tokenCompte', async (req, res) => {
 });
 
 app.post("/nouvelUtilisateur", async (req, res) => {
-    try{
+    //try{
         // Mot de passe
         //const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(req.body.motDePasse, 10);
@@ -107,23 +108,20 @@ app.post("/nouvelUtilisateur", async (req, res) => {
             if (error) throw res.json({status: "error"});
             res.json({status: "Ligne(s) ajoutée(s): "+results.affectedRows+"."});
         });
-    }catch{
+    /*}catch{
         res.json({status: "Erreur!"});
-    }
+    }*/
 });
 
-app.post("/connexion", async (req, res) => {
+app.post("/connexion",  (req, res) => {
     try{
-        //const salt = await bcrypt.genSalt(10);
-        const hashedPass = await bcrypt.hash(req.body.motDePasse, 10);
-
         const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
         connexion.query(query, [req.body.nomCompte], (error, results) => {
             if(!results[0]){
                 res.json({status: "Not found"});
             }else{
                 try{
-                    if(await bcrypt.compare(req.body.motDePasse, results[0].mot_de_passe)){
+                    if( bcrypt.compare(req.body.motDePasse, results[0].mot_de_passe)){
                         res.json({token: results[0].token});
                     }else{
                         res.json({status: "Erreur d'identifiants"});
