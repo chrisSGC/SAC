@@ -38,17 +38,6 @@ const connexion = mysql.createPool({
 });
 
 /**
- * Permet de verifier un token
- */
-const verifToken = (token) => {
-    const query = "SELECT id FROM compte WHERE token=?";
-
-    connexion.query(query,[token], (error, results) => {
-        return (!results[0]) ? false : true;
-    });
-}
-
-/**
  * Permet de creer un token a un compte
  */
 function creerToken(long) {
@@ -95,7 +84,7 @@ app.get('/obtenirBois/:idBois', async (req, res) => {
 /**
  * PErmet de verifier si un compte existe avec son token
  */
-app.get('verifierExistance/:tokenCompte', async (req, res) => {
+app.get('/verifierExistance/:tokenCompte', async (req, res) => {
     const query = "SELECT id FROM compte WHERE token=?";
 
     connexion.query(query, [req.params.tokenCompte], (error, results) => {

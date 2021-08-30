@@ -12,26 +12,18 @@
         <div class="logo"><img src="images/logo.png" alt="logo" /></div>
         <div class="type">
             <h2>Type de bois</h2>
-            <select name="" id="">
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
-                <option value="1">AAAA</option>
+            <select name="typeBoisSelect" id="typeBoisSelect">
+                <option value="0">-- Selectionnez un type de bois</option>
             </select>
         </div>
         <div class="caracteristiques">
             <h2>Caractéristiques</h2>
             <table>
-                <tr><th><span>Bois</span> <span>:</span></th><td>BBB</td></tr>
-                <tr><th><span>Type</span> <span>:</span></th><td>BBB</td></tr>
-                <tr><th><span>Origine</span> <span>:</span></th><td>BBB</td></tr>
-                <tr><th><span>Temps de séchage</span> <span>:</span></th><td>BBB</td></tr>
-                <tr><th><span>Température minimum</span> <span>:</span></th><td>BBB</td></tr>
+                <tr><th><span>Bois</span> <span>:</span></th><td id="nomBoisDet"></td></tr>
+                <tr><th><span>Type</span> <span>:</span></th><td id="typeBoisDet"></td></tr>
+                <tr><th><span>Origine</span> <span>:</span></th><td id="origineBoisDet"></td></tr>
+                <tr><th><span>Temps de séchage</span> <span>:</span></th><td id="tempsSechBoisDet"></td></tr>
+                <tr><th><span>Température minimum</span> <span>:</span></th><td id="temperatureBoisDet"></td></tr>
             </table>
         </div>
     </div>
@@ -44,9 +36,9 @@
             </div>
             <button id="demarrerFour" class="demarrerFour">Demarrage du four</button>
             <div class="infosPied">
-                <span class="typeBois">Erable</span>
-                <span class="temps"><span class="tempsActuel">0</span>s/<span class="tempsTotal">20</span>s</span>
-                <span class="temperatureMini">min 25 Celcius</span>
+                <span class="typeBois" id="typeBoisChauff"></span>
+                <span class="temps"><span class="tempsActuel" id="tempsActuel"></span>s/<span class="tempsTotal" id="tempsTotal"></span>s</span>
+                <span class="temperatureMini" id="temperatureMini"></span>
                 <div class="dels">
                     <div class="delRouge">O</div>
                     <div class="delJaune active">O</div>
@@ -55,5 +47,6 @@
             </div>
         </div>
     </div>
+    <script src="script/app.js"/></script>
 </body>
 </html>
