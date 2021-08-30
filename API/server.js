@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
 const saltL = 10;
 
 const allowedOrigins = ['http://127.0.0.1:5500'];
-app.use(cors({  
+/*app.use(cors({  
     origin: function(origin, callback){
         // allow requests with no origin     
         // (like mobile apps or curl requests)    
@@ -25,7 +25,8 @@ app.use(cors({
         
         return callback(null, true);  
     }
-}));
+}));*/
+app.use(cors());
 app.use(express.json());
 app.listen(process.env.PORT, () => console.log("RUNNING"));
 
