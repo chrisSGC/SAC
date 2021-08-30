@@ -79,5 +79,8 @@ document.getElementById('typeBoisSelect').addEventListener('change', async () =>
             document.getElementById('typeBoisChauff').innerHTML = myJsonOB.nom;
             document.getElementById('temperatureMini').innerHTML = "min "+myJsonOB.temperature+" Celcius";
         }
+    }else{
+        
+        document.getElementById('nomBoisDet').innerHTML = document.getElementById('typeBoisDet').innerHTML = document.getElementById('origineBoisDet').innerHTML = document.getElementById('tempsSechBoisDet').innerHTML = document.getElementById('temperatureBoisDet').innerHTML = document.getElementById('tempsTotal').innerHTML = document.getElementById('typeBoisChauff').innerHTML = document.getElementById('temperatureMini').innerHTML = "";
     }
 });

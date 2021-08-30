@@ -11,21 +11,6 @@ const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const saltL = 10;
 
-const allowedOrigins = ['http://127.0.0.1:5500'];
-/*app.use(cors({  
-    origin: function(origin, callback){
-        // allow requests with no origin     
-        // (like mobile apps or curl requests)    
-        if(!origin) 
-            return callback(null, true);    
-        if(allowedOrigins.indexOf(origin) === -1){
-            var msg = 'The CORS policy for this site does not allow access from the specified Origin.';      
-            return callback(new Error(msg), false);    
-        }
-        
-        return callback(null, true);  
-    }
-}));*/
 app.use(cors());
 app.use(express.json());
 app.listen(process.env.PORT, () => console.log("RUNNING"));
@@ -35,7 +20,6 @@ const connexion = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DATABASE,
     host: process.env.INSTANCE
-    //socketPath: `/cloudsql/${process.env.INSTANCE}`
 });
 
 /**
@@ -139,13 +123,6 @@ app.post("/connexion",  (req, res) => {
                 }catch{
                     res.json({status: "Erreur d'identifiants"});
                 }
-                /*if(results[0].mot_de_passe == req.body.motDePasse){
-                    console.log("Données de sortie:");
-                    console.log(results[0].token);
-                    res.json({token: results[0].token});
-                }else{
-                    res.json({status: "Erreur d'identifiants"});
-                }*/
             }
         });
     }catch(e){
