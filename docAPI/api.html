@@ -4,9 +4,125 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>[DEV 1.0] Documentation API</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css" integrity="sha256-nwNjrH7J9zS/Ti4twtWX7OsC5QdQHCIKTv5cLMsGo68=" crossorigin="anonymous" />
+
 </head>
 <body>
-    YO API
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">Menu</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Compte</span> </a>
+                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Creer un compte</span></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Connexion</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">API</span></a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Liste des types de bois</span></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Details d'un type de bois</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="accueilAPI" class="col py-3 d-none">
+                <h3>API BOIS Version 1.0</h3>
+                <p class="lead">Cette documentation a pour but de vous presenter les differents appels possibles avec l'API Bois. Cette API est destinee a gerer l'ESP d'un four a bois.</p>
+                <div class="col-6 offset-3">
+                    <!--<h5 class="mt-4"> <span class="p-2 bg-light shadow rounded text-success"> Version 1.3.8</span> - 4th Jun 2020</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Latest Update Bootstrap v4.5</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Latest Update jQuery v3.5.1</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Latest Update Material Design Icons v5.3.45</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>New <b>RTL Version</b> (Only CSS Base)</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>New <b>Dark Version</b> (Only CSS Base)</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>New <b>Dark RTL Version</b> (Only CSS Base)</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Added 6 Colors scheme</li>
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Fixed some responsive issues</li>
+                    </ul>-->
+                    <h5 class="mt-4"> <span class="p-2 bg-light shadow rounded text-success"> Version 1.0.0</span> - 30 Aout 2021</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Publication initiale</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="creerCompte" class="col py-3">
+                <div class="col-8 offset-2">
+                    <div class="row">
+                        <h3>Creer un compte</h3>
+                    </div>
+                    <div class="row">
+                        <h4>URL d'appel</h4>
+                        <div class="d-flex justify-content-between bg-light ml-2 px-2 py-2">
+                            <div class="col-4">/nouvelUtilisateur</div>
+                            <div class="align-middle"><span class="badge bg-success">POST</span></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Requete</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reponse</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <h5>Body</h5>
+                                    <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                    <p><span class="fw-bold">Type:</span> Object</p>
+                                    <p><span class="fw-bold">Proprietes:</span> <ul class="list-group"><li class="list-group-item"><span class="fw-bold">nomCompte:</span> <span class="fst-italic">required (string)</span></li><li class="list-group-item"><span class="fw-bold">motDePasse:</span> <span class="fst-italic">required (string)</span></li></ul></p>
+                                    <p><span class="fw-bold">Exemple:</span></p>
+                                    <blockquote class=" bg-light ml-2 px-2 py-2">
+                                        <p>{<br>nomCompte : 'votre nom de compte',<br> motDePasse : 'votre mot de passe'<br>}</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <h4>Reponse</h4>
+                                    <blockquote class=" bg-light ml-2 px-2 py-2">
+                                        Si echec:<br>
+                                        <p>{<br>nomCompte : 'votre nom de compte',<br> motDePasse : 'votre mot de passe'<br>}</p>
+                                        Si succes:<br>
+                                        <p>{<br>nomCompte : 'votre nom de compte',<br> motDePasse : 'votre mot de passe'<br>}</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
