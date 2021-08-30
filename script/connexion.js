@@ -7,6 +7,14 @@ document.getElementById("signin").addEventListener("submit", (evt) => {
     verifConnexion();
 });
 
+
+/**
+ * Au chargement on supprime un eventuel item
+ */
+window.onload = () => {
+    localStorage.removeItem('token');
+}
+
 const verifConnexion = async () => {
     let data = {nomCompte: document.getElementById("floatingInput").value, motDePasse: document.getElementById("floatingPassword").value};
 
