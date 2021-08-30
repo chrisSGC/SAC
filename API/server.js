@@ -8,6 +8,7 @@ const express = require('express');
 var cors = require('cors');
 const app = express();
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
 
 const allowedOrigins = ['http://127.0.0.1:5500'];
 app.use(cors({  
@@ -41,6 +42,17 @@ const verifToken = (token) => {
     connexion.query(query,[token], (error, results) => {
         return (!results[0]) ? false : true;
     });
+}
+
+function creerToken(long) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
 }
 
 /**
@@ -82,23 +94,53 @@ app.get('verifierExistance/:tokenCompte', async (req, res) => {
     });
 });
 
-app.post("/connexion", async (req, res) => {
-    console.log("Données d'entrée:");
-    console.log(req.body.nomCompte);
-    console.log(req.body.motDePasse);
+app.post("/nouvelUtilisateur", async (req, res) => {
+    try{
+        // Mot de passe
+        //const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(req.body.motDePasse, 10);
 
-    const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
-    connexion.query(query, [req.body.nomCompte], (error, results) => {
-        if(!results[0]){
-            res.json({status: "Not found"});
-        }else{
-            if(results[0].mot_de_passe == req.body.motDePasse){
-                console.log("Données de sortie:");
-                console.log(results[0].token);
-                res.json({token: results[0].token});
+        const query = "INSERT INTO compte(nom, mot_de_passe, token) VALUES ?";
+        let valeurs = [req.body.nomCompte, hashedPass, creerToken(15)];
+
+        connexion.query(query, [valeurs], (error, results) => {
+            if (error) throw res.json({status: "error"});
+            res.json({status: "Ligne(s) ajoutée(s): "+results.affectedRows+"."});
+        });
+    }catch{
+        res.json({status: "Erreur!"});
+    }
+});
+
+app.post("/connexion", async (req, res) => {
+    try{
+        //const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(req.body.motDePasse, 10);
+
+        const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
+        connexion.query(query, [req.body.nomCompte], (error, results) => {
+            if(!results[0]){
+                res.json({status: "Not found"});
             }else{
-                res.json({status: "Erreur d'identifiants"});
+                try{
+                    if(await bcrypt.compare(req.body.motDePasse, results[0].mot_de_passe)){
+                        res.json({token: results[0].token});
+                    }else{
+                        res.json({status: "Erreur d'identifiants"});
+                    }
+                }catch{
+                    res.json({status: "Erreur d'identifiants"});
+                }
+                /*if(results[0].mot_de_passe == req.body.motDePasse){
+                    console.log("Données de sortie:");
+                    console.log(results[0].token);
+                    res.json({token: results[0].token});
+                }else{
+                    res.json({status: "Erreur d'identifiants"});
+                }*/
             }
-        }
-    });
+        });
+    }catch{
+        res.json({status: "Erreur!"});
+    }
 });
