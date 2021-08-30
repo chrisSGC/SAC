@@ -106,7 +106,7 @@ app.post("/nouvelUtilisateur", async (req, res) => {
 /**
  * Permet de se connecter a l'application avec ses identifiants et son mot de passe
  */
-app.post("/connexion",  (req, res) => {
+app.post("/connexion", (req, res) => {
     try{
         const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
         connexion.query(query, [req.body.nomCompte], (error, results) => {
@@ -115,7 +115,7 @@ app.post("/connexion",  (req, res) => {
                 res.json({status: "Not found"});
             }else{
                 try{
-                    if( bcrypt.compare(req.body.motDePasse, results[0].mot_de_passe)){
+                    if(bcrypt.compare(req.body.motDePasse, results[0].mot_de_passe)){
                         res.json({code: 200, token: results[0].token});
                     }else{
                         res.json({code: 400, status: "Erreur d'identifiants."});
