@@ -37,6 +37,9 @@ const connexion = mysql.createPool({
     //socketPath: `/cloudsql/${process.env.INSTANCE}`
 });
 
+/**
+ * Permet de verifier un token
+ */
 const verifToken = (token) => {
     const query = "SELECT id FROM compte WHERE token=?";
 
@@ -45,9 +48,12 @@ const verifToken = (token) => {
     });
 }
 
+/**
+ * Permet de creer un token a un compte
+ */
 function creerToken(long) {
     var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@!$%&#';
     var charactersLength = characters.length;
 
     for ( var i = 0; i < long; i++ ) {
@@ -57,7 +63,7 @@ function creerToken(long) {
 }
 
 /**
- * Permet de recuperer la liste des bois
+ * Permet de recuperer la liste des bois enregistres
  */
 app.get('/bois', async (req, res) => {
     const query = "SELECT * FROM bois";
@@ -71,6 +77,9 @@ app.get('/bois', async (req, res) => {
     });
 });
 
+/**
+ * Recupere les informations d'un type de bois a partir de son id
+ */
 app.get('/obtenirBois/:idBois', async (req, res) => {
     const query = "SELECT * FROM bois WHERE id=?";
 
@@ -83,6 +92,9 @@ app.get('/obtenirBois/:idBois', async (req, res) => {
     });
 });
 
+/**
+ * PErmet de verifier si un compte existe avec son token
+ */
 app.get('verifierExistance/:tokenCompte', async (req, res) => {
     const query = "SELECT id FROM compte WHERE token=?";
 
@@ -95,28 +107,36 @@ app.get('verifierExistance/:tokenCompte', async (req, res) => {
     });
 });
 
+/**
+ * Permet de creer un nouvel utilisateur
+ * 
+ * TODO: ajouter une securisation avec un mot de passe
+ */
 app.post("/nouvelUtilisateur", async (req, res) => {
-    //try{
+    try{
         // Mot de passe
-        //const salt = await bcrypt.genSalt(10);
-        const hashedPass = await bcrypt.hash(req.body.motDePasse, 10);
+        const hashedPass = await bcrypt.hash(req.body.motDePasse, saltL);
 
-        const query = "INSERT INTO compte(nom, mot_de_passe, token) VALUES ?";
+        const query = "INSERT INTO compte(nom, mot_de_passe, token) VALUES (?)";
         let valeurs = [req.body.nomCompte, hashedPass, creerToken(15)];
 
         connexion.query(query, [valeurs], (error, results) => {
             if (error) throw res.json({status: "error"});
             res.json({status: "Ligne(s) ajoutée(s): "+results.affectedRows+"."});
         });
-    /*}catch{
+    }catch{
         res.json({status: "Erreur!"});
-    }*/
+    }
 });
 
+/**
+ * Permet de se connecter a l'application avec ses identifiants et son mot de passe
+ */
 app.post("/connexion",  (req, res) => {
     try{
         const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
         connexion.query(query, [req.body.nomCompte], (error, results) => {
+            if (error) throw res.json({status: error});
             if(!results[0]){
                 res.json({status: "Not found"});
             }else{
@@ -138,7 +158,7 @@ app.post("/connexion",  (req, res) => {
                 }*/
             }
         });
-    }catch{
-        res.json({status: "Erreur!"});
+    }catch(e){
+        res.json({status: e});
     }
 });
