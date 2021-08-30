@@ -31,13 +31,13 @@
                                 <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Compte</span> </a>
                             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a style="text-align: left;" onClick="gererPanneau('creerCompte')" class="nav-link px-0 btn text-light"> <span class="d-none d-sm-inline">Creer un compte</span></a>
+                                    <a style="text-align: left;" onClick="gererPanneau('creerCompte')" class="nav-link px-0 btn text-light"> <span class="d-none d-sm-inline">Creer un compte</span> <span class="badge bg-success">POST</span></a>
                                 </li>
                                 <li class="w-100">
-                                    <a style="text-align: left;" onClick="gererPanneau('connexion')" class="nav-link px-0 ml-0 btn text-light"> <span class="d-none d-sm-inline">Connexion</span></a>
+                                    <a style="text-align: left;" onClick="gererPanneau('connexion')" class="nav-link px-0 ml-0 btn text-light"> <span class="d-none d-sm-inline">Connexion</span> <span class="badge bg-success">POST</span></a>
                                 </li>
                                 <li class="w-100">
-                                    <a style="text-align: left;" onClick="gererPanneau('verifierCompte')" class="nav-link px-0 btn text-light"> <span class="d-none d-sm-inline">Vérifier un compte</span></a>
+                                    <a style="text-align: left;" onClick="gererPanneau('verifierCompte')" class="nav-link px-0 btn text-light"> <span class="d-none d-sm-inline">Vérifier un compte</span> <span class="badge bg-primary">GET</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -46,10 +46,10 @@
                                 <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">API</span></a>
                             <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                                 <li class="w-100">
-                                    <a href="#" class="nav-link px-0 text-light"> <span class="d-none d-sm-inline">Liste des types de bois</span></a>
+                                    <a style="text-align: left;" onClick="gererPanneau('typeBois')" class="nav-link px-0 btn text-light"> <span class="d-none d-sm-inline">Liste des types de bois</span> <span class="badge bg-primary">GET</span></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0 text-light"> <span class="d-none d-sm-inline">Details d'un type de bois</span></a>
+                                    <a style="text-align: left;" onClick="gererPanneau('ficheTypeBois')" class="nav-link px-0 btn text-light"> <span class="d-none d-sm-inline">Details d'un type de bois</span> <span class="badge bg-primary">GET</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -80,6 +80,7 @@
                 </div>
             </div>
             <!-- FIN ZONE ACCUEIL -->
+            <!-- FICHES COMPTE -->
             <!-- ZONE CREER COMPTE -->
             <div id="creerCompte" class="col py-3 d-none">
                 <div class="col-8 offset-2">
@@ -91,6 +92,11 @@
                         <div class="d-flex justify-content-between bg-light ml-2 px-2 py-2">
                             <div class="font-monospace col-4">/nouvelUtilisateur</div>
                             <div class="align-middle"><span class="badge bg-success">POST</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 w-100">
+                        <div class="alert alert-warning w-100" role="alert">
+                            Ce systeme est sécurisé par BCRYPT.
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -178,6 +184,11 @@
                             <div class="align-middle"><span class="badge bg-success">POST</span></div>
                         </div>
                     </div>
+                    <div class="mt-4 w-100">
+                        <div class="alert alert-warning w-100" role="alert">
+                            Ce systeme est sécurisé par BCRYPT.
+                        </div>
+                    </div>
                     <div class="row mt-2">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -262,6 +273,11 @@
                             <div class="font-monospace col-4">/verifierExistance/{:token}</div>
                             <div class="align-middle"><span class="badge bg-primary">GET</span></div>
                         </div>
+                        <div class="mt-4 w-100">
+                            <div class="alert alert-warning w-100" role="alert">
+                                Ce systeme est sécurisé par BCRYPT.
+                            </div>
+                        </div>
                     </div>
                     <div class="row mt-2">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -332,6 +348,194 @@
                 </div>
             </div>
             <!-- FIN ZONE VERIFIER COMPTE -->
+            <!-- FIN FICHES COMPTE -->
+
+            <!-- FICHE API -->
+            <!-- ZONE LISTE TYPES DE BOIS -->
+            <div id="typeBois" class="col py-3 d-none">
+                <div class="col-8 offset-2">
+                    <div class="row">
+                        <h3>Liste des types de bois</h3>
+                    </div>
+                    <div class="row">
+                        <h4>URL d'appel</h4>
+                        <div class="d-flex justify-content-between bg-light ml-2 px-2 py-2">
+                            <div class="font-monospace col-4">/bois</div>
+                            <div class="align-middle"><span class="badge bg-primary">GET</span></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="requeteLTB-tab" data-bs-toggle="tab" href="#requeteLTB" role="tab" aria-controls="requeteLTB" aria-selected="true">Requete</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="reponseLTB-tab" data-bs-toggle="tab" href="#reponseLTB" role="tab" aria-controls="reponseLTB" aria-selected="false">Reponse</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="requeteLTB" role="tabpanel" aria-labelledby="requeteLTB-tab">
+                                <div class="row">
+                                    <h5>Params</h5>
+                                    <div class='row'>
+                                        <div class="col-2 align-middle"><span class="badge bg-primary">GET</span></div>
+                                        <div class="col-10">Permet de récupérer la liste des type de bois possible.<br><span class="badge bg-warning text-dark">Méthode asynchrone</span></div>
+                                    </div>
+                                    <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                    <p><span class="fw-bold">Type:</span> Object</p>
+                                    <p><span class="fw-bold">Proprietes:</span> <ul class="list-group">
+                                        <li class="list-group-item"><span class="fst-italic">Aucune information requise</span></li>
+                                    </ul></p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="reponseLTB" role="tabpanel" aria-labelledby="reponseLTB-tab">
+                                <div class="row mt-4">
+                                    <h5 class="fw-bold">HTTP Code statut <span class="text-primary">200</span></h5>
+                                    <hr>
+                                    <p>Liste des types de bois obtenue avec succès.</p>
+                                    <div class="row">
+                                        <h6>Body</h6>
+                                        <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                        <p><span class="fw-bold">Type:</span> Object</p>
+                                        <p><span class="fw-bold">Proprietes:</span> <ul class="list-group">
+                                            <li class="list-group-item"><span class="fw-bold">result:</span> <span class="fst-italic">required (Object list)</span></li>
+                                        </ul></p>
+                                        <p><span class="fw-bold">Exemple:</span></p>
+                                        <blockquote class="font-monospace bg-light ml-2 px-2 py-2">
+                                            <p>[<br>
+                                                {<br>
+                                                    "id": 1,<br>
+                                                    "nom": "Erable",<br>
+                                                    "type": "Dur",<br>
+                                                    "origine": "Etats Unis",<br>
+                                                    "sechage": 25,<br>
+                                                    "temperature": 25.75<br>
+                                                },<br>
+                                                {<br>
+                                                    "id": 2,<br>
+                                                    "nom": "Erable du japon",<br>
+                                                    "type": "Dur",<br>
+                                                    "origine": "Pakistan",<br>
+                                                    "sechage": 20,<br>
+                                                    "temperature": 20<br>
+                                                }<br>
+                                            ]</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h5 class="fw-bold">HTTP Code statut <span class="text-danger">400</span></h5>
+                                    <hr>
+                                    <p>Une erreur est survenue pendant la récupération des types de bois.</p>
+                                    <div class="row">
+                                        <h6>Body</h6>
+                                        <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                        <p><span class="fw-bold">Type:</span> Object</p>
+                                        <p><span class="fw-bold">Proprietes:</span> <ul class="list-group">
+                                            <li class="list-group-item"><span class="fw-bold">code:</span> <span class="fst-italic">required (int)</span></li>
+                                            <li class="list-group-item"><span class="fw-bold">status:</span> <span class="fst-italic">required (string)</span></li>
+                                        </ul></p>
+                                        <p><span class="fw-bold">Exemple:</span></p>
+                                        <blockquote class="font-monospace bg-light ml-2 px-2 py-2">
+                                            <p>{<br>code : 400 <br>
+                                            status: "Aucun type de bois disponible."<br>}</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN ZONE LISTE TYPES DE BOIS -->
+            <!-- ZONE FICHE TYPE DE BOIS -->
+            <div id="ficheTypeBois" class="col py-3 d-none">
+                <div class="col-8 offset-2">
+                    <div class="row">
+                        <h3>Fiche type de bois</h3>
+                    </div>
+                    <div class="row">
+                        <h4>URL d'appel</h4>
+                        <div class="d-flex justify-content-between bg-light ml-2 px-2 py-2">
+                            <div class="font-monospace col-4">/obtenirBois/{:idBois}</div>
+                            <div class="align-middle"><span class="badge bg-primary">GET</span></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="requeteFTB-tab" data-bs-toggle="tab" href="#requeteFTB" role="tab" aria-controls="requeteFTB" aria-selected="true">Requete</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="reponseFTB-tab" data-bs-toggle="tab" href="#reponseFTB" role="tab" aria-controls="reponseFTB" aria-selected="false">Reponse</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="requeteFTB" role="tabpanel" aria-labelledby="requeteFTB-tab">
+                                <div class="row">
+                                    <h5>Params</h5>
+                                    <div class='row'>
+                                        <div class="col-2 align-middle"><span class="badge bg-primary">GET</span></div>
+                                        <div class="col-10">Permet de récupérer un type de bois.<br><span class="badge bg-warning text-dark">Méthode asynchrone</span></div>
+                                    </div>
+                                    <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                    <p><span class="fw-bold">Type:</span> Object</p>
+                                    <p><span class="fw-bold">Proprietes:</span> <ul class="list-group">
+                                        <li class="list-group-item"><span class="fw-bold">idBois:</span> <span class="fst-italic">required (int)</span></li>
+                                    </ul></p>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="reponseFTB" role="tabpanel" aria-labelledby="reponseFTB-tab">
+                                <div class="row mt-4">
+                                    <h5 class="fw-bold">HTTP Code statut <span class="text-primary">200</span></h5>
+                                    <hr>
+                                    <p>Un type de bois a été obtenu avec succès.</p>
+                                    <div class="row">
+                                        <h6>Body</h6>
+                                        <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                        <p><span class="fw-bold">Type:</span> Object</p>
+                                        <p><span class="fw-bold">Proprietes:</span> <ul class="list-group">
+                                            <li class="list-group-item"><span class="fw-bold">result:</span> <span class="fst-italic">required (Object list)</span></li>
+                                        </ul></p>
+                                        <p><span class="fw-bold">Exemple:</span></p>
+                                        <blockquote class="font-monospace bg-light ml-2 px-2 py-2">
+                                            <p>{<br>
+                                                    "id": 1,<br>
+                                                    "nom": "Erable",<br>
+                                                    "type": "Dur",<br>
+                                                    "origine": "Etats Unis",<br>
+                                                    "sechage": 25,<br>
+                                                    "temperature": 25.75<br>
+                                                }<br></p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h5 class="fw-bold">HTTP Code statut <span class="text-danger">400</span></h5>
+                                    <hr>
+                                    <p>Une erreur est survenue pendant la récupération d'un type de bois.</p>
+                                    <div class="row">
+                                        <h6>Body</h6>
+                                        <p><span class="fw-bold">Media type:</span> Application/json</p>
+                                        <p><span class="fw-bold">Type:</span> Object</p>
+                                        <p><span class="fw-bold">Proprietes:</span> <ul class="list-group">
+                                            <li class="list-group-item"><span class="fw-bold">code:</span> <span class="fst-italic">required (int)</span></li>
+                                            <li class="list-group-item"><span class="fw-bold">status:</span> <span class="fst-italic">required (string)</span></li>
+                                        </ul></p>
+                                        <p><span class="fw-bold">Exemple:</span></p>
+                                        <blockquote class="font-monospace bg-light ml-2 px-2 py-2">
+                                            <p>{<br>code : 400 <br>
+                                            status: "Type de bois inconnu."<br>}</p>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN ZONE FICHE TYPE DE BOIS -->
+            <!-- FIN FICHE API -->
         </div>
     </div>
     <script type="text/javascript" src='gestionMenu.js'></script>

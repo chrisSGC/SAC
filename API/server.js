@@ -40,30 +40,38 @@ function creerToken(long) {
  * Permet de recuperer la liste des bois enregistres
  */
 app.get('/bois', async (req, res) => {
-    const query = "SELECT * FROM bois";
-
-    connexion.query(query, (error, results) => {
-        if(!results[0]){
-            res.json({code: 400, status: "Not found"});
-        }else{
-            res.json(results);
-        }
-    });
+    try{
+        const query = "SELECT * FROM bois";
+    
+        connexion.query(query, (error, results) => {
+            if(!results[0]){
+                res.json({code: 400, status: "Aucun type de bois disponible."});
+            }else{
+                res.json(results);
+            }
+        });
+    }catch{
+        res.json({code: 400, status: "Aucun type de bois disponible."});
+    }
 });
 
 /**
  * Recupere les informations d'un type de bois a partir de son id
  */
 app.get('/obtenirBois/:idBois', async (req, res) => {
-    const query = "SELECT * FROM bois WHERE id=?";
-
-    connexion.query(query, [req.params.idBois], (error, results) => {
-        if(!results[0]){
-            res.json({code: 400, status: "Not found"});
-        }else{
-            res.json(results[0]);
-        }
-    });
+    try{
+        const query = "SELECT * FROM bois WHERE id=?";
+    
+        connexion.query(query, [req.params.idBois], (error, results) => {
+            if(!results[0]){
+                res.json({code: 400, status: "Type de bois inconnu."});
+            }else{
+                res.json(results[0]);
+            }
+        });
+    }catch{
+        res.json({code: 400, status: "Type de bois inconnu."});
+    }
 });
 
 /**
