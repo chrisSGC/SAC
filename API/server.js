@@ -44,7 +44,7 @@ app.get('/bois', async (req, res) => {
 
     connexion.query(query, (error, results) => {
         if(!results[0]){
-            res.json({status: "Not found"});
+            res.json({code: 400, status: "Not found"});
         }else{
             res.json(results);
         }
@@ -59,7 +59,7 @@ app.get('/obtenirBois/:idBois', async (req, res) => {
 
     connexion.query(query, [req.params.idBois], (error, results) => {
         if(!results[0]){
-            res.json({status: "Not found"});
+            res.json({code: 400, status: "Not found"});
         }else{
             res.json(results[0]);
         }
@@ -96,10 +96,10 @@ app.post("/nouvelUtilisateur", async (req, res) => {
 
         connexion.query(query, [valeurs], (error, results) => {
             if (error) throw res.json({status: "error"});
-            res.json({status: "Ligne(s) ajoutée(s): "+results.affectedRows+"."});
+            res.json({code: 200, status: "Compte(s) ajouté(s): "+results.affectedRows+"."});
         });
     }catch{
-        res.json({status: "Erreur!"});
+        res.json({code: 400, status: "Erreur, impossible d'ajouter le compte!"});
     }
 });
 
@@ -116,16 +116,16 @@ app.post("/connexion",  (req, res) => {
             }else{
                 try{
                     if( bcrypt.compare(req.body.motDePasse, results[0].mot_de_passe)){
-                        res.json({token: results[0].token});
+                        res.json({code: 200, token: results[0].token});
                     }else{
-                        res.json({status: "Erreur d'identifiants"});
+                        res.json({code: 400, status: "Erreur d'identifiants."});
                     }
                 }catch{
-                    res.json({status: "Erreur d'identifiants"});
+                    res.json({code: 400, status: "Erreur d'identifiants."});
                 }
             }
         });
-    }catch(e){
-        res.json({status: e});
+    }catch{
+        res.json({code: 400, status: "Erreur d'identifiants."});
     }
 });
