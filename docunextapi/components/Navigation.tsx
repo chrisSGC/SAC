@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
+import logo from '../public/logoSAC.PNG';
+import { useRouter } from 'next/router';
+import ItemNavigation from './ItemNavigation';
+import ItemNavigationMobile from './ItemNavigationMobile';
 
 const Navigation = () => {
+    const router = useRouter();
     const [showMe, setShowMe] = useState(false);
 
     const toggle = () => {
@@ -15,15 +21,17 @@ const Navigation = () => {
                         <div className="flex space-x-7">
                             <div>
                                 <a href="#" className="flex items-center py-4 px-2">
-                                    <img src="logo.png" alt="Logo" className="h-8 w-8 mr-2" />
-                                    <span className="font-semibold text-gray-500 text-lg">Navigation</span>
+                                    <Image src={logo} alt="Logo" height={50} width={100} className="mr-2" />
+                                    <span className="font-semibold text-gray-500 text-lg">Documentation API Bois</span>
                                 </a>
                             </div>
                             <div className="hidden md:flex items-center space-x-1">
-                                <a href="" className="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">Home</a>
-                                <a href="" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Services</a>
-                                <a href="" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">About</a>
-                                <a href="" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
+                                <ItemNavigation lien={"/"} titre={"Accueil"} />
+                                <ItemNavigation lien={"/creerCompte"} titre={"Créer un compte"} />
+                                <ItemNavigation lien={"/connexion"} titre={"Connexion"} />
+                                <ItemNavigation lien={"/verifierCompte"} titre={"Vérifier un compte"} />
+                                <ItemNavigation lien={"/typesBois"} titre={"Types de bois"} />
+                                <ItemNavigation lien={"/ficheBois"} titre={"Fiche de type de bois"} />
                             </div>
                         </div>
                         <div className="md:hidden flex items-center">
@@ -43,12 +51,14 @@ const Navigation = () => {
                         </div>
                     </div>
                 </div>
-                <div style={{ display: showMe?"block":"none" }} className="mobile-menu">
+                <div style={{display: showMe?"block":"none"}} className="mobile-menu">
                     <ul className="">
-                        <li className="active"><a href="index.html" className="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
-                        <li><a href="#services" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Services</a></li>
-                        <li><a href="#about" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">About</a></li>
-                        <li><a href="#contact" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+                        <li><ItemNavigationMobile lien={"/"} titre={"Accueil"} /></li>
+                        <li><ItemNavigationMobile lien={"/creerCompte"} titre={"Créer un compte"} /></li>
+                        <li><ItemNavigationMobile lien={"/connexion"} titre={"Connexion"} /></li>
+                        <li><ItemNavigationMobile lien={"/verifierCompte"} titre={"Vérifier un compte"} /></li>
+                        <li><ItemNavigationMobile lien={"/typesBois"} titre={"Types de bois"} /></li>
+                        <li><ItemNavigationMobile lien={"/ficheBois"} titre={"Fiche de type de bois"} /></li>
                     </ul>
                 </div>
             </nav>
