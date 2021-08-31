@@ -41,7 +41,7 @@ function creerToken(long) {
  */
 app.get('/bois', async (req, res) => {
     try{
-        const query = "SELECT * FROM bois";
+        const query = "SELECT id, nom FROM bois";
     
         connexion.query(query, (error, results) => {
             if(!results[0]){

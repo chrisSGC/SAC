@@ -9,7 +9,7 @@ const creerCompte: NextPage = () => {
 	return (
 		<div>
             <EnTete />
-			<main className="md:container mx-auto">
+			<main className="md:container sm:px-12 mx-auto">
                 <EnTeteFiche nom={"Créer un compte"} url={"/nouvelUtilisateur"} methodeUtilisee={"POST"} securise={true} />
                 <ContenuFiche methodeUtilisee={"POST"} />
 			</main>
