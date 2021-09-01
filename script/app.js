@@ -8,7 +8,7 @@ const verifConnexion = async () => {
         window.location.replace("index.html");
     }else{
         // appel get
-        const response = await fetch(URL_API+'verifierExistance/'+localStorage.getItem("token"), {
+        const response = await fetch(URL_API+'api/verifierExistance/'+localStorage.getItem("token"), {
             method: "GET", 
             headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
         });
@@ -36,7 +36,7 @@ window.onload = async () => {
     verifConnexion();
 
     // get des donnees
-    const response = await fetch(URL_API+'bois', {
+    const response = await fetch(URL_API+'api/bois', {
         method: "GET", 
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
     });

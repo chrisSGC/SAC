@@ -18,7 +18,7 @@ window.onload = () => {
 const verifConnexion = async () => {
     let data = {nomCompte: document.getElementById("floatingInput").value, motDePasse: document.getElementById("floatingPassword").value};
 
-    const response = await fetch(URL_API+'connexion', {
+    const response = await fetch(URL_API+'api/connexion', {
         method: "POST", 
         body: JSON.stringify(data),
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}

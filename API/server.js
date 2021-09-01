@@ -39,7 +39,7 @@ function creerToken(long) {
 /**
  * Permet de recuperer la liste des bois enregistres
  */
-app.get('/bois', async (req, res) => {
+app.get('/api/bois', async (req, res) => {
     try{
         const query = "SELECT id, nom FROM bois";
     
@@ -58,7 +58,7 @@ app.get('/bois', async (req, res) => {
 /**
  * Recupere les informations d'un type de bois a partir de son id
  */
-app.get('/obtenirBois/:idBois', async (req, res) => {
+app.get('/api/obtenirBois/:idBois', async (req, res) => {
     try{
         const query = "SELECT * FROM bois WHERE id=?";
     
@@ -77,7 +77,7 @@ app.get('/obtenirBois/:idBois', async (req, res) => {
 /**
  * PErmet de verifier si un compte existe avec son token
  */
-app.get('/verifierExistance/:tokenCompte', async (req, res) => {
+app.get('/api/verifierExistance/:tokenCompte', async (req, res) => {
     const query = "SELECT id FROM compte WHERE token=?";
 
     connexion.query(query, [req.params.tokenCompte], (error, results) => {
@@ -94,7 +94,7 @@ app.get('/verifierExistance/:tokenCompte', async (req, res) => {
  * 
  * TODO: ajouter une securisation avec un mot de passe
  */
-app.post("/nouvelUtilisateur", async (req, res) => {
+app.post("/api/nouvelUtilisateur", async (req, res) => {
     try{
         // Mot de passe
         const hashedPass = await bcrypt.hash(req.body.motDePasse, saltL);
@@ -114,7 +114,7 @@ app.post("/nouvelUtilisateur", async (req, res) => {
 /**
  * Permet de se connecter a l'application avec ses identifiants et son mot de passe
  */
-app.post("/connexion", (req, res) => {
+app.post("/api/connexion", (req, res) => {
     try{
         const query = "SELECT token, mot_de_passe FROM compte WHERE nom=?";
         connexion.query(query, [req.body.nomCompte], (error, results) => {
