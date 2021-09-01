@@ -5,11 +5,11 @@ import EnTete from '../components/EnTete';
 import EnTeteFiche from '../components/EnTeteFiche';
 import ContenuFiche from '../components/ContenuFiche';
 
-const connexion: NextPage = () => {
+const verifierCompte: NextPage = () => {
 	const [contenuPage, setContenuPage] = useState({});
 
 	useEffect(() => {
-		fetch("/connexion.json").then((res) => res.json()).then((data) => {
+		fetch("/verifierCompte.json").then((res) => res.json()).then((data) => {
 			setContenuPage(data);
 		});
 	}, []);
@@ -25,4 +25,4 @@ const connexion: NextPage = () => {
 	)
 }
 
-export default connexion;
+export default verifierCompte;

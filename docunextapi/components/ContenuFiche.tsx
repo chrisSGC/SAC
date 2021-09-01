@@ -28,10 +28,38 @@ const ContenuFiche = ({ data }) => {
         );
     });
 
+    var descriptionResultatSucces = data.reponse.description;
+    var mediaTypeResultatSucces = data.reponse.mediaType;
+    var typeResultatSucces = data.reponse.type;
+    var proprietesResultatSucces = data.reponse.proprietes.map(function (propri:any) {
+        var estRequis = propri.requise === 'true' ? 'required' : '' ;
+        return (
+            <li className="relative -mb-px block border p-4 border-grey"><span className="font-bold">{propri.nom}:</span> <span className="italic">{estRequis} {propri.type}</span></li>
+        );
+    });
+    var exempleResultatSucces = data.reponse.proprietes.map(function (propri:any) {
+        return (
+            <span>{propri.nom}: '{propri.exemple}'<br /></span>
+        );
+    });
+
+    var descriptionResultatEchec = data.reponseErreur.description;
+    var mediaTypeResultatEchec = data.reponseErreur.mediaType;
+    var typeResultatEchec = data.reponseErreur.type;
+    var proprietesResultatEchec = data.reponseErreur.proprietes.map(function (propri:any) {
+        var estRequis = propri.requise === 'true' ? 'required' : '' ;
+        return (
+            <li className="relative -mb-px block border p-4 border-grey"><span className="font-bold">{propri.nom}:</span> <span className="italic">{estRequis} {propri.type}</span></li>
+        );
+    });
+    var exempleResultatEchec = data.reponseErreur.proprietes.map(function (propri:any) {
+        return (
+            <span>{propri.nom}: '{propri.exemple}'<br /></span>
+        );
+    });
 
 	var badge = methodeUtilisee === "POST" ? "inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-green-100 bg-green-700 rounded": "inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded";
     var typeMethodeBadge = typeMethode === "asynchrone" ? "inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-yellow-100 bg-yellow-500 rounded": "inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-500 rounded";
-
 
 	return (
 		<div>
@@ -71,46 +99,42 @@ const ContenuFiche = ({ data }) => {
                 <h4 className="text-2xl font-semibold my-2">Reponse</h4>
                 <details>
                     <summary className="text-xl font-semibold my-2">HTTP Code Status <span className="text-green-500">200</span></summary>
-                    <p>Compte cree avec succes.</p>
+                    <p>{descriptionResultatSucces}</p>
                     <h5 className="text-xl font-semibold my-2">Body</h5>
-                    <div className="my-2"><span className="font-bold">Media type:</span> Application/json</div>
-                    <div className="my-2"><span className="font-bold">Type:</span> Object</div>
+                    <div className="my-2"><span className="font-bold">Media type:</span> {mediaTypeResultatSucces}</div>
+                    <div className="my-2"><span className="font-bold">Type:</span> {typeResultatSucces}</div>
                     <div className="mt-2"><span className="font-bold">Propriétés:</span></div>
                     <div className="w-1/4 mb-2">
                         <ul className="list-reset flex flex-col">
-                            <li className=" rounded-t relative -mb-px block border p-4 border-grey"><span className="font-bold">code:</span> <span className="italic">required (string)</span></li>
-                            <li className="rounded-b relative block border p-4 border-grey"><span className="font-bold">status:</span> <span className="italic">required (string)</span></li>
+                            {proprietesResultatSucces}
                         </ul>
                     </div>
                     <div className="mt-2"><span className="font-bold">Exemple:</span></div>
                     <div className="bg-gray-300 rounded py-2 px-2 my-2">
                         <div className="font-mono">
                             &#123;<br />
-                            code : 200,<br />
-                            status : "Compte(s) ajouté(s): 1"<br />
+                            {exempleResultatSucces}
                             &#125;
                         </div>
                     </div>
                 </details>
                 <details className="mb-6">
                     <summary className="text-xl font-semibold my-2">HTTP Code Status <span className="text-red-500">400</span></summary>
-                    <p>Une erreur est suurvenue pendant l'ajout du compte.</p>
+                    <p>{descriptionResultatEchec}</p>
                     <h5 className="text-xl font-semibold my-2">Body</h5>
-                    <div className="my-2"><span className="font-bold">Media type:</span> Application/json</div>
-                    <div className="my-2"><span className="font-bold">Type:</span> Object</div>
+                    <div className="my-2"><span className="font-bold">Media type:</span> {mediaTypeResultatEchec}</div>
+                    <div className="my-2"><span className="font-bold">Type:</span> {typeResultatEchec}</div>
                     <div className="mt-2"><span className="font-bold">Propriétés:</span></div>
                     <div className="w-1/4 mb-2">
                         <ul className="list-reset flex flex-col">
-                            <li className=" rounded-t relative -mb-px block border p-4 border-grey"><span className="font-bold">code:</span> <span className="italic">required (string)</span></li>
-                            <li className="rounded-b relative block border p-4 border-grey"><span className="font-bold">status:</span> <span className="italic">required (string)</span></li>
+                            {proprietesResultatEchec}
                         </ul>
                     </div>
                     <div className="mt-2"><span className="font-bold">Exemple:</span></div>
                     <div className="bg-gray-300 rounded py-2 px-2 my-2">
                         <div className="font-mono">
                             &#123;<br />
-                            code : 400,<br />
-                            status : "Erreur, impossible d'ajouter le compte!"<br />
+                            {exempleResultatEchec}
                             &#125;
                         </div>
                     </div>
