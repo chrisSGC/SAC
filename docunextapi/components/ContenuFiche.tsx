@@ -10,17 +10,21 @@ import React from "react";
                     </ul>*/
 
 const ContenuFiche = ({ data }) => {
-    var requete = data.requeteContenu;
     var methodeUtilisee = data.methodeUtilisee;
     var description = data.requeteContenu.description;
     var descriptionD = data.requeteContenu.secondeDescription;
     var typeMethode = data.requeteContenu.synchrone === 'false' ? "asynchrone" : "synchrone";
     var mediaType = data.requeteContenu.mediaType;
     var type = data.requeteContenu.type;
-    var proprietes = data.requeteContenu.proprietes.map(function (propri) {
+    var proprietes = data.requeteContenu.proprietes.map(function (propri:any) {
         var estRequis = propri.requise === 'true' ? 'required' : '' ;
         return (
             <li className="relative -mb-px block border p-4 border-grey"><span className="font-bold">{propri.nom}:</span> <span className="italic">{estRequis} {propri.type}</span></li>
+        );
+    });
+    var exemple = data.requeteContenu.proprietes.map(function (propri:any) {
+        return (
+            <span>{propri.nom}: '{propri.exemple}'<br /></span>
         );
     });
 
@@ -50,16 +54,14 @@ const ContenuFiche = ({ data }) => {
                 <div className="mt-2"><span className="font-bold">Propriétés:</span></div>
                 <div className="w-1/4 mb-2">
                     <ul className="list-reset flex flex-col rounded">
-                        <li className=" rounded-t relative -mb-px block border p-4 border-gray"><span className="font-bold">nomCompte:</span> <span className="italic">required (string)</span></li>
-                        <li className="rounded-b relative block border p-4 border-gray"><span className="font-bold">motDePasse:</span> <span className="italic">required (string)</span></li>
+                        {proprietes}
                     </ul>
                 </div>
                 <div className="mt-2"><span className="font-bold">Exemple:</span></div>
                 <div className="bg-gray-300 rounded py-2 px-2 my-2">
                     <div className="font-mono">
                         &#123;<br />
-                        nomCompte : 'John Cena',<br />
-                        motDePasse : 'SaintPampamSurMer'<br />
+                        {exemple}
                         &#125;
                     </div>
                 </div>
