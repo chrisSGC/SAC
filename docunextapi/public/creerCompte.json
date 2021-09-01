@@ -6,7 +6,7 @@
         "securise": false,
         "securisePar": "BCRYPT"
     },
-    "requete": {
+    "requeteContenu": {
         "description": "Permet de créer un nouveau compte utilisateur.",
         "secondeDescription": "Le nom de compte désigne le nom sous lequel l'utilisateur se connectera et le mot de passe sera utilisé pour valider son authentification.",
         "mediaType": "Application/json",

@@ -10,19 +10,19 @@ import React from "react";
                     </ul>*/
 
 const ContenuFiche = ({ data }) => {
+    var requete = data.requeteContenu;
     var methodeUtilisee = data.methodeUtilisee;
-    var description = data.requete.description;
-    var descriptionD = data.requete.secondeDescription;
-    var typeMethode = data.requete.synchrone === 'false' ? "asynchrone" : "synchrone";
-        /*var networks = data.social.map(function (network) {
-          return (
-            <li key={network.name}>
-              <a href={network.url}>
-                <i className={network.className}></i>
-              </a>
-            </li>
-          );
-        });*/
+    var description = data.requeteContenu.description;
+    var descriptionD = data.requeteContenu.secondeDescription;
+    var typeMethode = data.requeteContenu.synchrone === 'false' ? "asynchrone" : "synchrone";
+    var mediaType = data.requeteContenu.mediaType;
+    var type = data.requeteContenu.type;
+    var proprietes = data.requeteContenu.proprietes.map(function (propri) {
+        var estRequis = propri.requise === 'true' ? 'required' : '' ;
+        return (
+            <li className="relative -mb-px block border p-4 border-grey"><span className="font-bold">{propri.nom}:</span> <span className="italic">{estRequis} {propri.type}</span></li>
+        );
+    });
 
 
 	var badge = methodeUtilisee === "POST" ? "inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-green-100 bg-green-700 rounded": "inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded";
@@ -45,11 +45,11 @@ const ContenuFiche = ({ data }) => {
                         <p><span className={typeMethodeBadge}>Méthode {typeMethode}</span></p>
                     </div>
                 </div>
-                <div className="my-2"><span className="font-bold">Media type:</span> Application/json</div>
-                <div className="my-2"><span className="font-bold">Type:</span> Object</div>
+                <div className="my-2"><span className="font-bold">Media type:</span> {mediaType}</div>
+                <div className="my-2"><span className="font-bold">Type:</span> {type}</div>
                 <div className="mt-2"><span className="font-bold">Propriétés:</span></div>
                 <div className="w-1/4 mb-2">
-                    <ul className="list-reset flex flex-col">
+                    <ul className="list-reset flex flex-col rounded">
                         <li className=" rounded-t relative -mb-px block border p-4 border-gray"><span className="font-bold">nomCompte:</span> <span className="italic">required (string)</span></li>
                         <li className="rounded-b relative block border p-4 border-gray"><span className="font-bold">motDePasse:</span> <span className="italic">required (string)</span></li>
                     </ul>
