@@ -1,0 +1,65 @@
+{
+    "methodeUtilisee": "POST",
+    "enTete": {
+        "nom": "Créer un compte",
+        "url": "/nouvelUtilisateur",
+        "securise": false,
+        "securisePar": "BCRYPT"
+    },
+    "requete": {
+        "description": "Permet de créer un nouveau compte utilisateur.",
+        "secondeDescription": "Le nom de compte désigne le nom sous lequel l'utilisateur se connectera et le mot de passe sera utilisé pour valider son authentification.",
+        "mediaType": "Application/json",
+        "type": "Object",
+        "synchrone": "false",
+        "proprietes": [
+            {
+                "nom": "nomCompte",
+                "requise": "true",
+                "type": "(string)",
+                "exemple": "John Cena"
+            },{
+                "nom": "motDePasse",
+                "requise": "true",
+                "type": "(string)",
+                "exemple": "SaintPampamSurMer"
+            }
+        ]
+    },
+    "reponse": {
+        "description": "Compte cree avec succes.",
+        "mediaType": "Application/json",
+        "type": "Object",
+        "proprietes": [
+            {
+                "nom": "code",
+                "requise": "true",
+                "type": "(int)",
+                "exemple": "200"
+            },{
+                "nom": "status",
+                "requise": "true",
+                "type": "(string)",
+                "exemple": "Compte(s) ajouté(s): 1"
+            }
+        ]
+    },
+    "reponseErreur": {
+        "description": "Une erreur est survenue pendant l'ajout du compte.",
+        "mediaType": "Application/json",
+        "type": "Object",
+        "proprietes": [
+            {
+                "nom": "code",
+                "requise": "true",
+                "type": "(int)",
+                "exemple": "400"
+            },{
+                "nom": "status",
+                "requise": "true",
+                "type": "(string)",
+                "exemple": "Erreur, impossible d'ajouter le compte!"
+            }
+        ]
+    }
+}

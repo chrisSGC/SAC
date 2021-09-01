@@ -1,0 +1,67 @@
+{
+    "methodeUtilisee": "POST",
+    "enTete": {
+        "nom": "",
+        "url": "",
+        "securise": "",
+        "securisePar": ""
+    },
+    "requete": {
+        "description": "",
+        "secondeDescription": "",
+        "mediaType": "",
+        "type": "",
+        "synchrone": "",
+        "proprietes": [
+            {
+                "nom": "",
+                "requise": "",
+                "type": "",
+                "exemple": ""
+            },{
+                "nom": "",
+                "requise": "",
+                "type": "",
+                "exemple": ""
+            }
+        ]
+    },
+    "reponse": {
+        "description": "",
+        "mediaType": "",
+        "type": "",
+        "synchrone": "",
+        "proprietes": [
+            {
+                "nom": "",
+                "requise": "",
+                "type": "",
+                "exemple": ""
+            },{
+                "nom": "",
+                "requise": "",
+                "type": "",
+                "exemple": ""
+            }
+        ]
+    },
+    "reponseErreur": {
+        "description": "",
+        "mediaType": "",
+        "type": "",
+        "synchrone": "",
+        "proprietes": [
+            {
+                "nom": "",
+                "requise": "",
+                "type": "",
+                "exemple": ""
+            },{
+                "nom": "",
+                "requise": "",
+                "type": "",
+                "exemple": ""
+            }
+        ]
+    }
+}
