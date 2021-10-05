@@ -57,7 +57,7 @@ document.getElementById('typeBoisSelect').addEventListener('change', async () =>
 
     if(idBois != 0){
         // get des donnees
-        const response = await fetch(URL_API+'obtenirBois/'+idBois, {
+        const response = await fetch(URL_API+'api/obtenirBois/'+idBois, {
             method: "GET", 
             headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
         });

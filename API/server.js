@@ -44,7 +44,7 @@ app.get('/api/bois', async (req, res) => {
         const query = "SELECT id, nom FROM bois";
     
         connexion.query(query, (error, results) => {
-            if(!results[0]){
+            if(!results){
                 res.json({code: 400, status: "Aucun type de bois disponible."});
             }else{
                 res.json(results);
@@ -81,7 +81,7 @@ app.get('/api/verifierExistance/:tokenCompte', async (req, res) => {
     const query = "SELECT id FROM compte WHERE token=?";
 
     connexion.query(query, [req.params.tokenCompte], (error, results) => {
-        if(!results[0]){
+        if(!results){
             res.json({retour: "false"});
         }else{
             res.json({retour: "true"});
